@@ -8,7 +8,7 @@ color_palette = px.colors.qualitative.D3
 
 
 def radar_chart(percs_df, stats_df, stats):
-     fig = go.Figure()
+    fig = go.Figure()
 
     for _, row in percs_df.iterrows():
         id = row["person_id"]
