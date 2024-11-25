@@ -2,7 +2,6 @@ import numpy as np
 import plotly.express as px
 import plotly.figure_factory as ff
 import plotly.graph_objects as go
-import time
 
 color_palette = px.colors.qualitative.D3
 

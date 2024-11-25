@@ -4,10 +4,11 @@ import numpy as np
 from plots import color_palette, density_plot, radar_chart
 
 # Import some pre-downloaded data on player careers
-from shared import app_dir, careers_df, from_start, gp_max, players_dict, stats, to_end
-from shiny import reactive, req
+from shared import app_dir, careers_df, from_start, gp_max, players_dict, stats, to_end 
+from shiny import reactive, req, render
 from shiny.express import input, ui
 from shinywidgets import render_plotly
+from faicons import icon_svg
 
 ui.page_opts(title="NBA Dashboard", fillable=True)
 
@@ -42,29 +43,111 @@ with ui.sidebar():
     )
 
 
-with ui.layout_columns(col_widths={"sm": 12, "md": 12, "lg": [4, 8]}):
-    with ui.card(full_screen=True):
-        ui.card_header("Player career comparison")
+with ui.layout_columns(col_widths={"sm": 3, "md": 3, "lg": 3}):
+    with ui.card(
+     #   showcase = icon_svg("sun"),
+        theme = "bg-gradient-red-orange"
+    ):
+        "Player and Points/Game"
+        
+        @render.data_frame
+        def display_dfpt():
+      # Use maximum widthS
+            dfpt = player_stats()
+            dfpt['PTS'] = dfpt['PTS'].round(2)
+            return dfpt[['player_name','PTS']]
 
-        @render_plotly
-        def career_compare():
-            return radar_chart(percentiles(), player_stats(), stats)
+    with ui.card(
+    #    showcase=icon_svg("sun"),
+        theme="bg-gradient-red-orange"
+    ):
+        "Field Goal Percentage"
+        
+        @render.data_frame
+        def display_dfpc():
+      # Use maximum widthS
+            dfpc = player_stats()
+            dfpc['FG_PCT'] = dfpc['FG_PCT'].round(2)
+            return dfpc[['FG_PCT']]
 
-        ui.card_footer("Percentiles are based on career per game averages.")
+    with ui.card(
+    #    showcase=icon_svg("sun"),
+        theme="bg-gradient-red-orange"
+    ):
+        "Three Point Percentage"
+        
+        @render.data_frame
+        def display_df3pc():
+      # Use maximum widthS
+            df3pc = player_stats()
+            df3pc['FG3_PCT'] = df3pc['FG3_PCT'].round(2)
+            return df3pc[['FG3_PCT']]
+        
+        
+    with ui.card(
+     #   showcase=icon_svg("sun"),
+        theme="bg-red"
+    ):
+        "Free Throw Percentage"
+        
+        @render.data_frame
+        def display_dffpc():
+      # Use maximum widthS
+            dffpc = player_stats()
+            dffpc['FT_PCT'] = dffpc['FT_PCT'].round(2)
+            return dffpc[['FT_PCT']]
+      
+    with ui.card(
+    #    showcase=icon_svg("sun"),
+        theme="bg-gradient-red-orange"
+    ):
+        "Rebounds"
+        
+        @render.data_frame
+        def display_dfr():
+      # Use maximum widthS
+            dfr = player_stats()
+            dfr['REB'] = dfr['REB'].round(2)
+            return dfr[['REB']]
 
-    with ui.card(full_screen=True):
-        with ui.card_header(class_="d-flex align-items-center gap-1"):
-            "Player career"
-            ui.input_select("stat", None, choices=stats, selected="PTS", width="auto")
-            " vs the rest of the league"
+    with ui.card(
+    #    showcase=icon_svg("sun"),
+        theme="bg-gradient-red-orange"
+    ):
+        "Assists"
+        
+        @render.data_frame
+        def display_dfa():
+      # Use maximum widthS
+            dfa = player_stats()
+            dfa['AST'] = dfa['AST'].round(2)
+            return dfa[['AST']]
 
-        @render_plotly
-        def stat_compare():
-            return density_plot(
-                careers(), player_stats(), input.stat(), players_dict, on_rug_click
-            )
+    with ui.card(
+    #    showcase=icon_svg("sun"),
+        theme="bg-gradient-red-orange"
+    ):
+        "Steals"
+        
+        @render.data_frame
+        def display_dfs():
+      # Use maximum widthS
+            dfs = player_stats()
+            dfs['STL'] = dfs['STL'].round(2)
+            return dfs[['STL']]
 
-        ui.card_footer("Click on a player's name to add them to the comparison.")
+    with ui.card(
+    #    showcase=icon_svg("sun"),
+        theme="bg-gradient-red-orange"
+    ):
+        "Blocks"
+        
+        @render.data_frame
+        def display_dfb():
+      # Use maximum widthS
+            dfb = player_stats()
+            dfb['BLK'] = dfb['BLK'].round(2)
+            return dfb[['BLK']]
 
 
 # Filter the careers data based on the selected games and seasons
