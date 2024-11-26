@@ -7,8 +7,8 @@ from plots import color_palette, density_plot, radar_chart
 from shared import app_dir, careers_df, from_start, gp_max, players_dict, stats, to_end 
 from shiny import reactive, req, render
 from shiny.express import input, ui
-from shinywidgets import render_plotly
-from faicons import icon_svg
+
+
 
 ui.page_opts(title="The Back and Last Line of a NBA Basketball Card - Career Averages", fillable=True)
 
@@ -58,13 +58,7 @@ with ui.card(
 
 with ui.layout_columns(col_widths={"sm": 3, "md": 3, "lg": 3}):
 
-
-
-
-    with ui.card(
-    #    showcase=icon_svg("sun"),
-        theme="bg-gradient-red-orange"
-    ):
+    with ui.card():
         "Player"
         
         @render.data_frame
@@ -74,10 +68,7 @@ with ui.layout_columns(col_widths={"sm": 3, "md": 3, "lg": 3}):
             return dfpd[['player_name']]
         
 
-    with ui.card(
-    #    showcase=icon_svg("sun"),
-        theme="bg-gradient-red-orange"
-    ):
+    with ui.card():
         "Field Goal Percentage"
         
         @render.data_frame
@@ -87,10 +78,7 @@ with ui.layout_columns(col_widths={"sm": 3, "md": 3, "lg": 3}):
             dfpc['FG_PCT'] = dfpc['FG_PCT'].round(2)
             return dfpc[['FG_PCT']]
 
-    with ui.card(
-    #    showcase=icon_svg("sun"),
-        theme="bg-gradient-red-orange"
-    ):
+    with ui.card():
         "Three Point Percentage"
         
         @render.data_frame
@@ -101,10 +89,7 @@ with ui.layout_columns(col_widths={"sm": 3, "md": 3, "lg": 3}):
             return df3pc[['FG3_PCT']]
         
         
-    with ui.card(
-     #   showcase=icon_svg("sun"),
-        theme="bg-red"
-    ):
+    with ui.card():
         "Free Throw Percentage"
         
         @render.data_frame
@@ -114,10 +99,7 @@ with ui.layout_columns(col_widths={"sm": 3, "md": 3, "lg": 3}):
             dffpc['FT_PCT'] = dffpc['FT_PCT'].round(2)
             return dffpc[['FT_PCT']]
       
-    with ui.card(
-    #    showcase=icon_svg("sun"),
-        theme="bg-gradient-red-orange"
-    ):
+    with ui.card():
         "Rebounds"
         
         @render.data_frame
@@ -127,10 +109,7 @@ with ui.layout_columns(col_widths={"sm": 3, "md": 3, "lg": 3}):
             dfr['REB'] = dfr['REB'].round(2)
             return dfr[['REB']]
 
-    with ui.card(
-    #    showcase=icon_svg("sun"),
-        theme="bg-gradient-red-orange"
-    ):
+    with ui.card():
         "Assists"
         
         @render.data_frame
@@ -140,10 +119,7 @@ with ui.layout_columns(col_widths={"sm": 3, "md": 3, "lg": 3}):
             dfa['AST'] = dfa['AST'].round(2)
             return dfa[['AST']]
 
-    with ui.card(
-    #    showcase=icon_svg("sun"),
-        theme="bg-gradient-red-orange"
-    ):
+    with ui.card():
         "Steals"
         
         @render.data_frame
@@ -153,10 +129,8 @@ with ui.layout_columns(col_widths={"sm": 3, "md": 3, "lg": 3}):
             dfs['STL'] = dfs['STL'].round(2)
             return dfs[['STL']]
 
-    with ui.card(
-    #    showcase=icon_svg("sun"),
-        theme="bg-gradient-red-orange"
-    ):
+    with ui.card():
+
         "Blocks"
         
         @render.data_frame

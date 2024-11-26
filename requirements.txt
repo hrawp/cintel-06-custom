@@ -1,9 +1,4 @@
 pandas
-pyarrow
-shiny
-shinylive
-pandas
-faicons
 numpy
 nba_api
 plotly
