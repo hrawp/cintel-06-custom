@@ -10,7 +10,7 @@ from shiny.express import input, ui
 
 
 
-ui.page_opts(title="The Back and Last Line of a NBA Basketball Card - Career Averages", fillable=True)
+ui.page_opts(title="The Last Line on the Back of a NBA Basketball Card - Career Averages", fillable=True)
 
 ui.include_css(app_dir / "styles.css")
 
