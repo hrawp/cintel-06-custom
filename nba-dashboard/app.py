@@ -10,7 +10,7 @@ from shiny.express import input, ui
 from shinywidgets import render_plotly
 from faicons import icon_svg
 
-ui.page_opts(title="NBA Dashboard", fillable=True)
+ui.page_opts(title="The Back and Last Line of a NBA Basketball Card - Career Averages", fillable=True)
 
 ui.include_css(app_dir / "styles.css")
 
@@ -42,20 +42,37 @@ with ui.sidebar():
         sep="",
     )
 
+with ui.card(
+     #   showcase = icon_svg("sun"),
+    theme = "bg-gradient-red-orange"
+):
+    "Player and Points/Game"
+        
+    @render.data_frame
+    def display_dfpt():
+      # Use maximum widthS
+        dfpt = player_stats()
+        dfpt['PTS'] = dfpt['PTS'].round(2)
+        return dfpt[['player_name','PTS']]
+
 
 with ui.layout_columns(col_widths={"sm": 3, "md": 3, "lg": 3}):
+
+
+
+
     with ui.card(
-     #   showcase = icon_svg("sun"),
-        theme = "bg-gradient-red-orange"
+    #    showcase=icon_svg("sun"),
+        theme="bg-gradient-red-orange"
     ):
-        "Player and Points/Game"
+        "Player"
         
         @render.data_frame
-        def display_dfpt():
+        def display_dfpd():
       # Use maximum widthS
-            dfpt = player_stats()
-            dfpt['PTS'] = dfpt['PTS'].round(2)
-            return dfpt[['player_name','PTS']]
+            dfpd = player_stats()
+            return dfpd[['player_name']]
+        
 
     with ui.card(
     #    showcase=icon_svg("sun"),
@@ -148,6 +165,7 @@ with ui.layout_columns(col_widths={"sm": 3, "md": 3, "lg": 3}):
             dfb = player_stats()
             dfb['BLK'] = dfb['BLK'].round(2)
             return dfb[['BLK']]
+
 
 
 # Filter the careers data based on the selected games and seasons
