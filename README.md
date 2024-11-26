@@ -1,5 +1,5 @@
 # cintel-06-custom
-<<<<<<< HEAD
+
 
 This app brings back memories of watching the Bulls with Michael Jordan.  
 I collected his baskeball cards, spending all my money on them.
@@ -9,5 +9,4 @@ I configured it to show the specific career stats like a basketball card would s
 
 I did try using templates to change the color of the cards, but it just would not work.
 I would have loved to make these all red.
-=======
->>>>>>> ec9015fa88896e6eed23f6b86c8c0eef8ea2b706
+
